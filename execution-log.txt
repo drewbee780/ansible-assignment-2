@@ -1,0 +1,341 @@
+ansible-playbook -i inventory.ini assignment2.yaml
+PLAY [Configure three loopback interfaces for each router] *********************
+
+TASK [Set loopback IP based on hostname] ***************************************
+ok: [Core-Router-East]
+ok: [Core-Router-West]
+
+TASK [Ensure Ethernet0/0 is up (already configured with management IP)] ********
+[WARNING]: ansible-pylibssh not installed, falling back to paramiko
+[WARNING]: To ensure idempotency and correct diff the input configuration lines
+should be similar to how they appear if present in the running configuration on
+device
+changed: [Core-Router-East]
+changed: [Core-Router-West]
+
+TASK [Debug link interface result] *********************************************
+ok: [Core-Router-East] => {
+    "link_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Ethernet0/0",
+            "no shutdown"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Ethernet0/0",
+            "no shutdown"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+ok: [Core-Router-West] => {
+    "link_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Ethernet0/0",
+            "no shutdown"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Ethernet0/0",
+            "no shutdown"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+
+TASK [Set loopback interface 0] ************************************************
+changed: [Core-Router-East]
+changed: [Core-Router-West]
+
+TASK [Debug config result] *****************************************************
+ok: [Core-Router-East] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Loopback0",
+            "ip address 10.0.0.1 255.255.255.255"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Loopback0",
+            "ip address 10.0.0.1 255.255.255.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+ok: [Core-Router-West] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Loopback0",
+            "ip address 10.0.0.2 255.255.255.255"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Loopback0",
+            "ip address 10.0.0.2 255.255.255.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+
+TASK [Set loopback interface 1] ************************************************
+changed: [Core-Router-West]
+changed: [Core-Router-East]
+
+TASK [Debug config result] *****************************************************
+ok: [Core-Router-East] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Loopback1",
+            "ip address 10.1.1.1 255.255.255.255"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Loopback1",
+            "ip address 10.1.1.1 255.255.255.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+ok: [Core-Router-West] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Loopback1",
+            "ip address 10.1.1.2 255.255.255.255"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Loopback1",
+            "ip address 10.1.1.2 255.255.255.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+
+TASK [Set loopback interface 2] ************************************************
+changed: [Core-Router-East]
+changed: [Core-Router-West]
+
+TASK [Debug config result] *****************************************************
+ok: [Core-Router-East] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Loopback2",
+            "ip address 10.2.2.1 255.255.255.255"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Loopback2",
+            "ip address 10.2.2.1 255.255.255.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+ok: [Core-Router-West] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "interface Loopback2",
+            "ip address 10.2.2.2 255.255.255.255"
+        ],
+        "failed": false,
+        "updates": [
+            "interface Loopback2",
+            "ip address 10.2.2.2 255.255.255.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+
+TASK [Verify loopback interface configuration] *********************************
+ok: [Core-Router-East]
+ok: [Core-Router-West]
+
+TASK [Debug output] ************************************************************
+ok: [Core-Router-East] => {
+    "output.stdout_lines": [
+        [
+            "Interface              IP-Address      OK? Method Status                Protocol",
+            "Ethernet0/0            192.168.100.100 YES TFTP   up                    up      ",
+            "Ethernet0/1            unassigned      YES TFTP   administratively down down    ",
+            "Ethernet0/2            unassigned      YES TFTP   administratively down down    ",
+            "Ethernet0/3            unassigned      YES TFTP   administratively down down    ",
+            "Loopback0              10.0.0.1        YES manual up                    up      ",
+            "Loopback1              10.1.1.1        YES manual up                    up      ",
+            "Loopback2              10.2.2.1        YES manual up                    up"
+        ]
+    ]
+}
+ok: [Core-Router-West] => {
+    "output.stdout_lines": [
+        [
+            "Interface              IP-Address      OK? Method Status                Protocol",
+            "Ethernet0/0            192.168.100.101 YES TFTP   up                    up      ",
+            "Ethernet0/1            unassigned      YES TFTP   administratively down down    ",
+            "Ethernet0/2            unassigned      YES TFTP   administratively down down    ",
+            "Ethernet0/3            unassigned      YES TFTP   administratively down down    ",
+            "Loopback0              10.0.0.2        YES manual up                    up      ",
+            "Loopback1              10.1.1.2        YES manual up                    up      ",
+            "Loopback2              10.2.2.2        YES manual up                    up"
+        ]
+    ]
+}
+
+PLAY [Configure EIGRP and advertise all networks] ******************************
+
+TASK [Configure EIGRP] *********************************************************
+changed: [Core-Router-East]
+changed: [Core-Router-West]
+
+TASK [Debug config result] *****************************************************
+ok: [Core-Router-East] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "router eigrp 100",
+            "network 10.0.0.0 0.255.255.255",
+            "network 192.168.100.0 0.0.0.255"
+        ],
+        "failed": false,
+        "updates": [
+            "router eigrp 100",
+            "network 10.0.0.0 0.255.255.255",
+            "network 192.168.100.0 0.0.0.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+ok: [Core-Router-West] => {
+    "config_result": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "router eigrp 100",
+            "network 10.0.0.0 0.255.255.255",
+            "network 192.168.100.0 0.0.0.255"
+        ],
+        "failed": false,
+        "updates": [
+            "router eigrp 100",
+            "network 10.0.0.0 0.255.255.255",
+            "network 192.168.100.0 0.0.0.255"
+        ],
+        "warnings": [
+            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
+        ]
+    }
+}
+
+TASK [Verify EIGRP neighbors] **************************************************
+ok: [Core-Router-West]
+ok: [Core-Router-East]
+
+TASK [Debug EIGRP neighbors output] ********************************************
+ok: [Core-Router-East] => {
+    "eigrp_neighbors.stdout_lines": [
+        [
+            "EIGRP-IPv4 Neighbors for AS(100)",
+            "H   Address                 Interface              Hold Uptime   SRTT   RTO  Q  Seq",
+            "                                                   (sec)         (ms)       Cnt Num",
+            "0   192.168.100.101         Et0/0                    13 00:00:01    1  2000  1  1"
+        ]
+    ]
+}
+ok: [Core-Router-West] => {
+    "eigrp_neighbors.stdout_lines": [
+        [
+            "EIGRP-IPv4 Neighbors for AS(100)",
+            "H   Address                 Interface              Hold Uptime   SRTT   RTO  Q  Seq",
+            "                                                   (sec)         (ms)       Cnt Num",
+            "0   192.168.100.100         Et0/0                    13 00:00:01    1  2000  1  0"
+        ]
+    ]
+}
+
+TASK [Verify EIGRP routes] *****************************************************
+ok: [Core-Router-West]
+ok: [Core-Router-East]
+
+TASK [Debug EIGRP routes output] ***********************************************
+ok: [Core-Router-East] => {
+    "eigrp_routes.stdout_lines": [
+        [
+            "Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP",
+            "       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ",
+            "       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2",
+            "       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP",
+            "       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA",
+            "       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2",
+            "       ia - IS-IS inter area, * - candidate default, U - per-user static route",
+            "       H - NHRP, G - NHRP registered, g - NHRP registration summary",
+            "       o - ODR, P - periodic downloaded static route, l - LISP",
+            "       a - application route",
+            "       + - replicated route, % - next hop override, p - overrides from PfR",
+            "       & - replicated local route overrides by connected",
+            "",
+            "Gateway of last resort is not set"
+        ]
+    ]
+}
+ok: [Core-Router-West] => {
+    "eigrp_routes.stdout_lines": [
+        [
+            "Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP",
+            "       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ",
+            "       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2",
+            "       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP",
+            "       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA",
+            "       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2",
+            "       ia - IS-IS inter area, * - candidate default, U - per-user static route",
+            "       H - NHRP, G - NHRP registered, g - NHRP registration summary",
+            "       o - ODR, P - periodic downloaded static route, l - LISP",
+            "       a - application route",
+            "       + - replicated route, % - next hop override, p - overrides from PfR",
+            "       & - replicated local route overrides by connected",
+            "",
+            "Gateway of last resort is not set",
+            "",
+            "      10.0.0.0/32 is subnetted, 6 subnets",
+            "D        10.0.0.1 [90/409600] via 192.168.100.100, 00:00:00, Ethernet0/0",
+            "D        10.1.1.1 [90/409600] via 192.168.100.100, 00:00:00, Ethernet0/0",
+            "D        10.2.2.1 [90/409600] via 192.168.100.100, 00:00:00, Ethernet0/0"
+        ]
+    ]
+}
+
+PLAY RECAP *********************************************************************
+Core-Router-East           : ok=17   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+Core-Router-West           : ok=17   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  

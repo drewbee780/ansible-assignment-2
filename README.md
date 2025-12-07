@@ -11,6 +11,12 @@ Run the following command: ```ansible-playbook -i inventory.ini assignment2.yaml
 ### Successful Playbook Execution
 ![Screenshot showing successful execution.](screenshots/execution.png)
 
+### Output of show ip interface brief
+#### Core-Router-East
+![Screenshot of Core-Router-East ip interfaces.](screenshots/core-router-east-interfaces.png)
+#### Core-Router-West
+![Screenshot of Core-Router-West ip interfaces.](screenshots/core-router-west-interfaces.png)
+
 ### Output of show ip eigrp neighbors
 #### Core-Router-East
 ![Screenshot of Core-Router-East EIGRP neighbors.](screenshots/core-router-east-eigrp.png)
